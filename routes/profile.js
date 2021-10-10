@@ -23,6 +23,9 @@ router.put('/education',[verifyUser,updateEducationValidationRules()], profileCo
 
 router.delete('/education/:edu_id',verifyUser, profileController.deleteProfileEducation);
 
+router.get('/github/:username', profileController.getGithubProfiles);
+
+
 
 
 

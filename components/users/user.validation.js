@@ -76,11 +76,21 @@ const updateEducationValidationRules = () => {
   
 }
 
+const createPostValidationRules = () => {
+
+  //Validation rules for creating post
+  return [
+    body("text", 'Text is required').not().isEmpty()
+  ]
+  
+}
+
 
 module.exports = {
     userValidationRules,
     loginValidationRules,
     profileValidationRules,
     updateProfileValidationRules,
-    updateEducationValidationRules
+    updateEducationValidationRules,
+    createPostValidationRules
 }

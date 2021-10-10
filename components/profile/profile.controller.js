@@ -1,9 +1,13 @@
 const userDataLayer = require("../users/user.dal");
 const profileDataLayer = require("./profile.dal")
-const { validationResult } = require('express-validator')
+const { validationResult, body } = require('express-validator')
 let bcrypt = require('bcryptjs');
 const jwt = require('../auth/auth.services');
 const Profile = require("../../models/Profile");
+const request = require("request");
+const config = require("config");
+const { response } = require("express");
+
 
 
 
@@ -340,6 +344,34 @@ exports.deleteProfileEducation = async (req, res) => {
 
       res.send(profileData);
 
+
+    } catch (e) {
+      console.error(e.message);
+      res.status(500).json("server error");
+    }
+
+}
+
+
+exports.getGithubProfiles = async (req, res) => {
+  try {
+
+     const options = {
+       uri:`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&clint_id=${config.get('githubClintId')}&clint_secter=${config.get('githubSecret')}`,
+       method:'GET',
+       headers:{'user-agent' : 'node.js'}
+     };
+
+     request(options,(error,response,body) => {
+       if(error) console.log(error);
+
+       console.log("here");
+
+       if(response.statusCode !== 200) return res.status(404).json({msg:"Profile not found"});
+
+
+       res.json(JSON.parse(body));
+     })
 
     } catch (e) {
       console.error(e.message);

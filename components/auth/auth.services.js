@@ -36,6 +36,7 @@ exports.verifyUser = async (req, res, next) => {
     req.userId = decoded.id
     console.log("verify");
     console.log(req.userId);
+    console.log(req.body);
     next()
   })
 }

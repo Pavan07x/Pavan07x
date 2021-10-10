@@ -1,4 +1,6 @@
 {
     "mongoURI":"mongodb+srv://pavan123:pavan123@devconnector.v7cfo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwt":"mysecreattoken"
+    "jwt":"mysecreattoken",
+    "githubClintId":"01fa370d2bae62213655",
+    "githubSecret":"83c4e9d333f8885bc75891aceba8110c9257ae1c"
 }
